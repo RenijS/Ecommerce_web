@@ -1,0 +1,178 @@
+/*  Minimal CSS Reset */
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: 100%;
+}
+
+/* Color Palette */
+:root {
+  --color-primary: #ccd5ae; /* Light Green */
+  --color-secondary: #e9edc9; /* Pale Green */
+  --color-background: #fefae0; /* Cream */
+  --color-accent: #faedcd; /* Light Beige */
+  --color-text: #d4a373; /* Tan */
+  --color-orange: #fb8500; /* Bright Orange */
+  --color-brown: #bc6c25; /* Darker Brown */
+  --color-green: #606c38; /* Darker Green */
+}
+
+/* Global Typography Styles */
+:root {
+  --font-family: Arial, sans-serif;
+  --font-size-base: 16px;
+  --line-height-base: 1.5;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  background-color: var(--color-background);
+}
+
+input,
+button {
+  font-size: var(--font-size-base);
+}
+
+a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.518);
+}
+
+.sub-text {
+  font-size: 14px;
+}
+
+.nav-link {
+  transition: 310ms;
+  border-bottom: 1px solid transparent;
+}
+
+.nav-link:hover {
+  border-color: black;
+  color: black;
+}
+
+.horizontal-line {
+  border: 0.5px solid black;
+}
+
+.gone {
+  display: none;
+}
+
+/* Button class */
+button,
+.button {
+  border: 1px solid var(--color-text);
+  border-radius: 8px;
+  padding: 0.6rem 1.6rem;
+  color: var(--color-text);
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in;
+}
+
+button:hover,
+.button:hover {
+  cursor: pointer;
+  background-color: var(--color-text);
+  color: black;
+}
+
+/* react icons */
+svg {
+  font-size: x-large;
+}
+
+/* reusable class */
+
+.xy-central {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.x-central {
+  display: flex;
+  justify-content: center;
+}
+
+.y-central {
+  display: flex;
+  align-items: center;
+}
+
+/* Responsive Design */
+
+/* For large screen (desktops) */
+@media screen and (min-width: 1024px) {
+  :root {
+    --font-size-base: 18px; /* Increase for larger screen*/
+  }
+
+  .sub-text {
+    font-size: 16px;
+  }
+
+  svg {
+    font-size: x-large;
+  }
+}
+
+/* For medium-sized screens (tablets) */
+@media screen and (max-width: 1023px) {
+  :root {
+    --font-size-base: 16px; /* Keep default font size */
+  }
+
+  .sub-text {
+    font-size: 14px;
+  }
+}
+
+/* For small screens (phones) */
+@media screen and (max-width: 767px) {
+  :root {
+    --font-size-base: 14px; /* decrease font size for smaller screens */
+  }
+
+  .sub-text {
+    font-size: 13px;
+  }
+
+  svg {
+    font-size: larger;
+  }
+}

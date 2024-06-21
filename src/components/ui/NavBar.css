@@ -1,0 +1,199 @@
+.app__navbar-cover {
+  background-color: white;
+  border-bottom: 1px solid black;
+  z-index: 10;
+}
+
+.app__navbar {
+  display: flex;
+  top: 0px;
+  position: sticky;
+  width: 100%;
+  max-width: 1600px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1.5rem 2rem;
+  margin: auto;
+}
+
+.navbar__navigations {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.navbar__logo {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+.hamburger_icon,
+.arrow-down_img {
+  display: none;
+}
+
+.navbar__categories-card {
+  width: 100%;
+  height: 0;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid black;
+  gap: 3rem;
+  position: fixed;
+  top: 61px;
+  background-color: white;
+  opacity: 0;
+  transition: 0.8s;
+  overflow: hidden;
+  z-index: 9;
+}
+
+.categories-navlink_onhover {
+  padding: 2rem;
+  height: auto;
+  opacity: 1;
+  z-index: 11;
+}
+
+.navbar__categories-card .left-section {
+  margin: auto;
+}
+
+.left-section h3 {
+  margin-bottom: 1rem;
+}
+
+.navbar__categories-card .right-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex: 1;
+}
+
+/* links for card */
+
+.categories-li {
+  display: flex;
+  flex-direction: column;
+}
+
+.extended-categories_section {
+  display: none;
+}
+
+.search-bar {
+  width: 30%;
+  border: 1px gray solid;
+  display: flex;
+  gap: 1rem;
+  background-color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+}
+
+.search-bar input {
+  flex: 1;
+  border: 0;
+  outline: 0;
+}
+
+.search-bar button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+/* For medium-sized screens (tablets) */
+@media screen and (max-width: 1050px) {
+  .navbar__start-nav {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+  .app__navbar,
+  .navbar__navigations {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .app__navbar {
+    padding: 1.5rem 0;
+  }
+
+  .navbar__navigations {
+    gap: 0;
+    width: 100%;
+    margin: 1.5rem 0;
+  }
+
+  /* for header when not toogled */
+  .navbar__navigations {
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.35s ease-out;
+  }
+
+  .navbar__navigations li {
+    padding: 1rem;
+    border-bottom: 1.5px solid lightsteelblue;
+  }
+
+  .navbar__navigations li:first-child {
+    border-top: 1.5px solid lightsteelblue;
+  }
+
+  .extended-categories_section {
+    display: flex;
+    justify-content: space-evenly;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.5s;
+  }
+
+  .categories-card_extended {
+    height: auto;
+    margin-top: 1rem;
+    margin-top: 1rem;
+    opacity: 1;
+  }
+
+  /* Removing li style from top */
+  .extended-categories_section li,
+  .extended-categories_section li:first-child {
+    border: 0px;
+    padding: 0;
+  }
+
+  .hamburger_icon,
+  .arrow-down_img {
+    display: inline;
+  }
+
+  .icon {
+    margin: auto 0;
+    height: 100%;
+    font-size: larger;
+  }
+
+  .toogled {
+    margin: 1.5rem 0;
+    max-height: 600px;
+    opacity: 1;
+    overflow: visible;
+  }
+
+  .navbar__categories-card {
+    display: none;
+  }
+
+  .gone {
+    display: none;
+  }
+}
