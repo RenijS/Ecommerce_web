@@ -38,14 +38,11 @@ img {
 
 /* Color Palette */
 :root {
-  --color-primary: #ccd5ae; /* Light Green */
-  --color-secondary: #e9edc9; /* Pale Green */
-  --color-background: #fefae0; /* Cream */
-  --color-accent: #faedcd; /* Light Beige */
-  --color-text: #d4a373; /* Tan */
-  --color-orange: #fb8500; /* Bright Orange */
-  --color-brown: #bc6c25; /* Darker Brown */
-  --color-green: #606c38; /* Darker Green */
+  --color-primary: #219ebc;
+  --color-secondary: #ffb703;
+  --color-background: #f1faee;
+  --color-accent: #fb8500;
+  --color-text: #023047;
 }
 
 /* Global Typography Styles */
@@ -132,6 +129,12 @@ svg {
 .y-central {
   display: flex;
   align-items: center;
+}
+
+.single-line-text {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 /* Responsive Design */
