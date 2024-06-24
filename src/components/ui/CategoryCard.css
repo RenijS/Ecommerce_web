@@ -1,0 +1,79 @@
+.category-card {
+  position: relative;
+  height: 18rem;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.category-card .img-container {
+  height: 100%;
+  width: 100%;
+}
+
+.category-card img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: linear 0.2s;
+}
+
+.category-card p {
+  font-size: x-large;
+  position: absolute;
+  bottom: 0;
+  color: var(--color-accent);
+  background-color: var(--color-text);
+  padding: 0.4rem 1rem;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid var(--color-secondary);
+}
+
+.category-card:hover img {
+  transform: scale(1.1);
+}
+
+/*For animation*/
+
+.category-card:nth-child(2) {
+  transition-delay: 100ms;
+}
+.category-card:nth-child(3) {
+  transition-delay: 250ms;
+}
+.category-card:nth-child(4) {
+  transition-delay: 350ms;
+}
+.category-card:nth-child(5) {
+  transition-delay: 450ms;
+}
+.category-card:nth-child(6) {
+  transition-delay: 550ms;
+}
+
+.hidden {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateX(-100%);
+  transition: all 2s ease-in;
+}
+
+.show {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
+}
+
+/* incase the person has selected no animation on browser */
+@media (prefers-reduced-motion) {
+  .hidden {
+    transition: none;
+  }
+}
+
+@media screen and (max-width: 1350px) {
+  .category-card {
+    height: 14rem;
+  }
+}

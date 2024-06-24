@@ -14,8 +14,8 @@ const ProductCard = ({ data, index }) => {
       />
       <div className="product-details">
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <h3 className="single-line-text">{title}</h3>
-          <h3 style={{ marginLeft: "1.5rem" }}>${price}</h3>
+          <h4 className="single-line-text">{title}</h4>
+          <h4 style={{ marginLeft: "1.5rem" }}>${price}</h4>
         </div>
         <span className="sub-text">{category}</span>
         <div>
