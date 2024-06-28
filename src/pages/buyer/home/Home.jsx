@@ -46,28 +46,16 @@ const Home = () => {
   //to use for animation
   const logoRef = useRef();
   const textRef = useRef();
+  const welcomeTextRef = useRef();
 
   useEffect(() => {
-    let animationCount = 0;
-    //observer1 for category card
-    const observer1 = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (animationCount < 1 && entry.isIntersecting) {
-          entry.target.classList.add("show");
-        } else {
-          animationCount += 1;
-        }
-      });
-    });
-    const hiddenElements = document.querySelectorAll(".hidden");
-    hiddenElements.forEach((element) => observer1.observe(element));
-
     //observer2 for text
     const observer2 = new IntersectionObserver((entries) => {
       const entry = entries[0];
       console.log(entry);
 
       if (entry.isIntersecting) {
+        welcomeTextRef.current.classList.add("opacity-transition");
         textRef.current.classList.add("move-text");
       }
     });
@@ -83,11 +71,6 @@ const Home = () => {
       }
     });
     observer3.observe(logoRef.current);
-
-    // Cleanup observer on unmount
-    return () => {
-      hiddenElements.forEach((element) => observer1.unobserve(element));
-    };
   }, []);
 
   return (
@@ -101,7 +84,7 @@ const Home = () => {
           />
         </div>
         <div className="texts-container">
-          <p>Welcome to ShopMart</p>
+          <p ref={welcomeTextRef}>Welcome to ShopMart</p>
           <span ref={textRef} className="contain-1">
             <span ref={logoRef} className="push-img">
               <GiPush />

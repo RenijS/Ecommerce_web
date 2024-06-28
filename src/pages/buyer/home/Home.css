@@ -1,5 +1,5 @@
 .app__top-banner {
-  max-height: 70vh;
+  height: 70vh;
   position: relative;
   overflow: hidden;
 }
@@ -19,11 +19,14 @@
   position: absolute;
   z-index: 1;
   bottom: 40%;
-  left: 10%;
+  left: 8%;
 }
 
 .texts-container p {
+  opacity: 0;
   font-size: calc(var(--font-size-base) + 20px);
+  margin-left: 5.5rem;
+  transition: 1.5s linear;
 }
 
 .texts-container svg {
@@ -36,8 +39,10 @@
   align-items: center;
   height: max-content;
   gap: 0.5rem;
-  transform: translateX(-100%);
+  transform: translateX(-120%);
+  opacity: 0;
   transition: all 3s ease-out;
+  transition-delay: 1s;
 }
 
 .app__middle-container {
@@ -56,19 +61,41 @@
   margin-top: 1.5rem;
 }
 
-.texts-container .push-img {
-  transition: 2s all;
-  transition-delay: 2005ms;
+/* Animation */
+.texts-container .opacity-transition {
+  transform: scale(1.2);
+  opacity: 1;
 }
 
-/* Animation */
 .texts-container .move-text {
+  opacity: 1;
   transform: translateX(0);
 }
 
 .texts-container .move-logo {
-  transform: scaleX(-1);
-  transform: translateX(-200%);
+  animation: rotateThenMove 4s ease-out 0.2s forwards;
+}
+
+/* Handle reduced motion preferences */
+@media (prefers-reduced-motion) {
+  .texts-container .move-logo {
+    transition: none;
+    animation: none;
+  }
+}
+
+@keyframes rotateThenMove {
+  0% {
+    transform: scaleX(1) translateX(0);
+  }
+  50% {
+    transform: scale(1) scaleX(-1) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.5) scaleX(-1) translateX(1000%);
+    opacity: 0;
+  }
 }
 
 @media screen and (max-width: 1000px) {
