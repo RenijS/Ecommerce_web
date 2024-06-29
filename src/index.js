@@ -4,10 +4,11 @@ import "./assets/global.css";
 import App from "./App";
 import { BrowserRouter, useLocation } from "react-router-dom";
 import NavBar from "./components/ui/NavBar";
+import Footer from "./components/ui/Footer";
 
 const Main = () => {
   const location = useLocation();
-  const hideNavBarPaths = ["/login", "/signin"];
+  const hideComponentPaths = ["/login", "/signin"];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -15,8 +16,9 @@ const Main = () => {
 
   return (
     <>
-      {!hideNavBarPaths.includes(location.pathname) && <NavBar />}
+      {!hideComponentPaths.includes(location.pathname) && <NavBar />}
       <App />
+      {!hideComponentPaths.includes(location.pathname) && <Footer />}
     </>
   );
 };
