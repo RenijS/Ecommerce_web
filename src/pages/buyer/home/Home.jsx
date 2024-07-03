@@ -16,6 +16,7 @@ import furnitureImg from "../../../assets/images/furniture.jpg";
 import shoesImg from "../../../assets/images/shoes.jpg";
 import techImg from "../../../assets/images/tech.jpg";
 import travelImg from "../../../assets/images/travel.jpg";
+import chairsImg from "../../../assets/images/chairs.jpg";
 import CategoryCard from "../../../components/ui/CategoryCard";
 
 const Home = () => {
@@ -112,6 +113,30 @@ const Home = () => {
               />
             ))}
           </div>
+        </div>
+        {/* Weekly popular section */}
+        <div className="weekly-popular">
+          <h2>Weekly Popular Products</h2>
+          <Carousel arrayData={[...productArr]} />
+        </div>
+        {/* Picture ad with animation */}
+        <div className="picture-ad">
+          <div className="img-container">
+            <img src={chairsImg} alt={"chairs"} loading="lazy" />
+          </div>
+          <div className="ad-section">
+            <h2>Get 5% Cash Back On $200</h2>
+            <span>
+              Shopping is a bit of a relaxing hobby for me, which is sometimes
+              troubling for the bank balance.
+            </span>
+            <button>Learn More</button>
+          </div>
+        </div>
+        {/* Weekly popular section */}
+        <div className="weekly-popular">
+          <h2>Most Selling Products</h2>
+          <Carousel arrayData={[...productArr]} />
         </div>
       </section>
     </>
