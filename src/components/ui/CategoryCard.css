@@ -15,7 +15,7 @@
   height: 100%;
   width: 100%;
   object-fit: cover;
-  transition: linear 0.2s;
+  transition: ease-out 0.1s;
 }
 
 .category-card p {
@@ -68,6 +68,9 @@
 /* incase the person has selected no animation on browser */
 @media (prefers-reduced-motion) {
   .hidden {
+    transition: none;
+  }
+  .category-card img {
     transition: none;
   }
 }

@@ -27,11 +27,16 @@
   flex: 2;
 }
 
-.horizontal-line {
+.app__footer-cover .vertical-line {
   margin: 0 1.5rem;
 }
 
-.payments-container {
+.app__footer-cover .horizontal-line {
+  width: 30%;
+  margin: 0 auto;
+  animation: scaleWidth linear forwards;
+  animation-timeline: view();
+  animation-range: cover cover;
 }
 
 .payments-container .payments-grid {
@@ -51,6 +56,13 @@
 
 .subscribe-btn:hover {
   cursor: pointer;
+}
+
+/* Animation */
+@keyframes scaleWidth {
+  to {
+    transform: scaleX(2);
+  }
 }
 
 @media screen and (max-width: 1250px) {

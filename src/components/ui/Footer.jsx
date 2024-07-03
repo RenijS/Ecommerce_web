@@ -35,10 +35,7 @@ const Footer = () => {
 
   return (
     <div className="app__footer-cover">
-      <div
-        className="horizontal-line"
-        style={{ width: "60%", margin: "0 auto" }}
-      />
+      <div className="horizontal-line" style={{}} />
       <div className="app__footer">
         <div className="left-section">
           <div className="logo-title">
@@ -56,7 +53,7 @@ const Footer = () => {
             </div>
           </section>
         </div>
-        <div className="horizontal-line" style={{ borderColor: "gainsboro" }} />
+        <div className="vertical-line" style={{ borderColor: "gainsboro" }} />
         <div className="links-section">
           <LinkView
             title="Helpful Links"
