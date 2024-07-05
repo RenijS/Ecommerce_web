@@ -11,6 +11,15 @@ import { HiArrowDown } from "react-icons/hi";
 import { FaSearch } from "react-icons/fa";
 import { BsCartPlus } from "react-icons/bs";
 import { IoPersonOutline } from "react-icons/io5";
+import ImageComponent from "./ImageComponent";
+
+//images
+import bagsImg from "../../assets/images/bags.jpg";
+import booksImg from "../../assets/images/books.jpg";
+import furnitureImg from "../../assets/images/furniture.jpg";
+import shoesImg from "../../assets/images/shoes.jpg";
+import techImg from "../../assets/images/tech.jpg";
+import travelImg from "../../assets/images/travel.jpg";
 
 const NavBar = () => {
   //For small screen, hamburger icon is clicked or not.
@@ -45,6 +54,31 @@ const NavBar = () => {
       handleSearch();
     }
   };
+
+  //Category array
+  const categoriesArr = [
+    {
+      name: "Furniture",
+      src: furnitureImg,
+    },
+    { name: "Books", src: booksImg },
+    {
+      name: "Tech",
+      src: techImg,
+    },
+    {
+      name: "Travel",
+      src: travelImg,
+    },
+    {
+      name: "Bags",
+      src: bagsImg,
+    },
+    {
+      name: "Shoes",
+      src: shoesImg,
+    },
+  ];
 
   return (
     <>
@@ -211,40 +245,16 @@ const NavBar = () => {
           </NavLink>
         </section>
         <section className="right-section">
-          <LinkView
-            title="Quick Links"
-            linkInfoList={[
-              { text: "Breakfast", url: `/recipes/category/` },
-              { text: "Lunch", url: "/recipes/category/" },
-              { text: "Dinner", url: "/recipes/category/" },
-              { text: "Dessert", url: "/recipes/category/" },
-              { text: "Drink", url: "/recipes/category/" },
-            ]}
-            hideNav={setIsCategoriesCardVisible}
-          />
-          <div className="horizontal-line" />
-          <LinkView
-            title="Popular Categories"
-            linkInfoList={[
-              { text: "Healthy", url: "/recipes/category/" },
-              { text: "Chicken", url: "/recipes/category/" },
-              { text: "Easy", url: "/recipes/category/" },
-              { text: "Fast", url: "/recipes/category/" },
-              { text: "Rice", url: "/recipes/category/" },
-            ]}
-            hideNav={setIsCategoriesCardVisible}
-          />
-          <div className="horizontal-line" />
-          <LinkView
-            title="Recipes by diet"
-            linkInfoList={[
-              { text: "Vegan", url: "/recipes/category/" },
-              { text: "Vegeterian", url: "/recipes/category/" },
-              { text: "Pescatarian", url: "/recipes/category/" },
-              { text: "Low Carb", url: "/recipes/category/" },
-            ]}
-            hideNav={setIsCategoriesCardVisible}
-          />
+          {categoriesArr.map((category) => (
+            <NavLink to={"/"}>
+              <ImageComponent
+                src={category.src}
+                desc={category.name}
+                hash={"L6BfLT140#~816,@rsog9ew4$*S5"}
+              />
+              <span>{category.name}</span>
+            </NavLink>
+          ))}
         </section>
       </div>
     </>

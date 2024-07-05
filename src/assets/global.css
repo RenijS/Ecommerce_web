@@ -70,7 +70,7 @@ a {
 }
 
 .sub-text {
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .nav-link {
@@ -115,6 +115,15 @@ svg {
 }
 
 /* reusable class */
+.flex-x {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-y {
+  display: flex;
+  flex-direction: column;
+}
 
 .xy-central {
   display: flex;
@@ -147,7 +156,7 @@ svg {
   }
 
   .sub-text {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   svg {
@@ -162,7 +171,7 @@ svg {
   }
 
   .sub-text {
-    font-size: 14px;
+    font-size: 13px;
   }
 }
 
@@ -173,7 +182,7 @@ svg {
   }
 
   .sub-text {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   svg {
