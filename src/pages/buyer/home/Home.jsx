@@ -77,13 +77,11 @@ const Home = () => {
   return (
     <>
       <section className="app__top-banner">
-        <div className="image-container">
-          <ImageComponent
-            src={shoppingImg}
-            desc="shopping image"
-            hash={hashData.hash}
-          />
-        </div>
+        <ImageComponent
+          src={shoppingImg}
+          desc="shopping image"
+          hash={hashData.hash}
+        />
         <div className="texts-container">
           <p ref={welcomeTextRef}>Welcome to ShopMart</p>
           <span ref={textRef} className="contain-1">

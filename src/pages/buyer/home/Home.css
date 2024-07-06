@@ -1,14 +1,14 @@
 .app__top-banner {
   height: 70vh;
-  position: relative;
   overflow: hidden;
+  position: relative;
 }
 
-.app__top-banner .image-container {
+.app__top-banner .img-container {
   height: 100%;
 }
 
-.image-container img {
+.app__top-banner img {
   object-fit: cover;
   width: 100%;
   height: 100%;
@@ -18,7 +18,7 @@
   color: var(--color-text);
   position: absolute;
   z-index: 1;
-  bottom: 40%;
+  bottom: 30%;
   left: 8%;
 }
 
@@ -186,7 +186,7 @@
   }
 
   .app__top-banner .texts-container {
-    bottom: 50%;
+    bottom: 45%;
     left: 10%;
   }
 
@@ -202,6 +202,10 @@
 @media screen and (max-width: 767px) {
   .app__top-banner {
     max-height: 50vh;
+  }
+  .app__top-banner .texts-container {
+    bottom: 30%;
+    left: 2%;
   }
   .app__middle-container {
     padding: 1.5rem 1rem;
@@ -223,6 +227,17 @@
 }
 
 @media screen and (max-width: 470px) {
+  /* Animation */
+  .texts-container .opacity-transition {
+    transform: scale(1);
+  }
+  .texts-container p {
+    margin-left: 1rem;
+  }
+  .app__top-banner .texts-container {
+    bottom: 36%;
+    left: 0%;
+  }
   .picture-ad .ad-section {
     left: 4%;
     top: 10%;
