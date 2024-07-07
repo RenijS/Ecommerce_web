@@ -40,7 +40,11 @@ const Dropdown = ({
   }, [dropdownRef]);
 
   return (
-    <div className="dropdown" ref={dropdownRef}>
+    <div
+      className="dropdown"
+      ref={dropdownRef}
+      style={{ borderRadius: isActive ? "20px 20px 0 0" : "20px" }}
+    >
       <div
         className="dropdown-btn"
         onClick={() => {

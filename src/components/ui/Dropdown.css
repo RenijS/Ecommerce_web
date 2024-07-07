@@ -2,6 +2,8 @@
   background-color: var(--color-secondary);
   flex: 1;
   height: max-content;
+  position: relative;
+  transition: 0.4s linear;
 }
 
 .dropdown-btn {
@@ -10,7 +12,6 @@
   justify-content: space-between;
   gap: 1rem;
   width: 100%;
-  border: 1px black solid;
   padding: 0.5rem 1rem;
 }
 
@@ -20,11 +21,16 @@
 }
 
 .dropdown-content {
-  border: 1px black solid;
+  border-top: 1px black solid;
   max-height: 0;
   overflow: hidden;
   opacity: 0;
   transition: 0.6s ease;
+  position: absolute;
+  width: 100%;
+  background-color: var(--color-secondary);
+  z-index: 2;
+  border-radius: 0 0 20px 20px;
 }
 
 .dropdown-item {
@@ -33,6 +39,10 @@
   margin-top: 0.8rem;
   align-items: center;
   width: max-content;
+}
+
+.dropdown-item:last-child {
+  margin-bottom: 0.5rem;
 }
 
 .dropdown-content-active {

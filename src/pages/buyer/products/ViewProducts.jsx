@@ -9,6 +9,7 @@ import "./ViewProducts.css";
 import Dropdown from "../../../components/ui/Dropdown";
 import ImageComponent from "../../../components/ui/ImageComponent";
 import ProductCard from "../../../components/ui/ProductCard";
+import skyImg from "../../../assets/images/sky.jpg";
 
 const ViewProducts = () => {
   //getting parameters from url
@@ -77,7 +78,11 @@ const ViewProducts = () => {
   return (
     <div className="app__view-products">
       <div className="view-products_header">
-        <ImageComponent src={""} desc="" hash="LILzjM58Xoa$#ix^o#M|*0?bx[t7" />
+        <ImageComponent
+          src={skyImg}
+          desc="sky"
+          hash="LILzjM58Xoa$#ix^o#M|*0?bx[t7"
+        />
         <div className="text-container">
           <p className="sub-text">{searchType}</p>
           <h1>
@@ -155,7 +160,7 @@ const ViewProducts = () => {
           </div>
         </section>
         <section className="products-showcase">
-          <h1>This is temporary recipe showcase</h1>
+          <h1>This is temporary product showcase</h1>
           <div className="products-grid">
             {exampleArr.map((product, index) => (
               <ProductCard data={product} index={index} />
