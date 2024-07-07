@@ -1,0 +1,21 @@
+.search-bar {
+  border: 1px gray solid;
+  display: flex;
+  gap: 1rem;
+  background-color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  margin-right: 2rem;
+}
+
+.search-bar input {
+  flex: 1;
+  border: 0;
+  outline: 0;
+}
+
+.search-bar button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}

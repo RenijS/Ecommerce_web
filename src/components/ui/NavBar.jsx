@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import LinkView from "./LinkView";
-import { censoringWords } from "../../utils/ProfanityFilter"; // Import the profanity filter function
+
 //Style
 import "./NavBar.css";
 //Icons
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdCancel, MdKeyboardArrowDown } from "react-icons/md";
-import { HiArrowDown } from "react-icons/hi";
-import { FaSearch } from "react-icons/fa";
 import { BsCartPlus } from "react-icons/bs";
 import { IoPersonOutline } from "react-icons/io5";
 import ImageComponent from "./ImageComponent";
@@ -20,6 +17,7 @@ import furnitureImg from "../../assets/images/furniture.jpg";
 import shoesImg from "../../assets/images/shoes.jpg";
 import techImg from "../../assets/images/tech.jpg";
 import travelImg from "../../assets/images/travel.jpg";
+import SearchBar from "./SearchBar";
 
 //Category array
 const categoriesArr = [
@@ -82,30 +80,6 @@ const NavBar = () => {
   //For extended category card
   const [isCategoriesCardExtended, setIsCategoriesCardExtended] =
     useState(false);
-
-  //For search bar
-  const [searchText, setSearchText] = useState("");
-
-  const handleSearch = () => {
-    // Apply the profanity filter to the search text before performing the search
-    const filteredText = censoringWords(searchText);
-    //Encode the filtered text to use in URL, special characters (like @%) in the URL, which are not properly encoded gives error.
-    const encodedText = encodeURIComponent(filteredText);
-    // Perform the search with the filtered text
-    console.log("Filtered search text:", encodedText);
-    // Navigate to the search results page with the filtered text
-    window.location.href = `/recipes/search/${encodedText}`;
-  };
-
-  const handleChange = (event) => {
-    setSearchText(event.target.value);
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      handleSearch();
-    }
-  };
 
   return (
     <>
@@ -177,18 +151,8 @@ const NavBar = () => {
             </li>
           </ul>
           <div className="navbar__end-nav">
-            <div className="search-bar">
-              <input
-                type="text"
-                placeholder="Search Product"
-                value={searchText}
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
-              />
-              <button onClick={handleSearch}>
-                <FaSearch />
-              </button>
-            </div>
+            {/* Search bar */}
+            <SearchBar />
             <div
               className={
                 isToogleActive ? "btns flex-x btns-active" : "btns flex-x"
