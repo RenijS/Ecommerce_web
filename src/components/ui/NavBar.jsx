@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 
 //Style
 import "./NavBar.css";
@@ -55,11 +55,11 @@ const CategoriesDropdown = ({ isCategoriesCardExtended }) => {
     >
       <section className="left-section">
         <h3>Variety of categories available.</h3>
-        <NavLink to={"/recipes/all/all"}>Browse all categories {"->"}</NavLink>
+        <NavLink to={"/products/all/all"}>Browse all categories {"->"}</NavLink>
       </section>
       <section className="right-section">
-        {categoriesArr.map((category) => (
-          <NavLink to={"/"}>
+        {categoriesArr.map((category, index) => (
+          <NavLink to={`/products/category/${category.name}`} key={index}>
             <ImageComponent
               src={category.src}
               desc={category.name}
@@ -80,6 +80,12 @@ const NavBar = () => {
   //For extended category card
   const [isCategoriesCardExtended, setIsCategoriesCardExtended] =
     useState(false);
+
+  let location = useLocation();
+
+  useEffect(() => {
+    setIsCategoriesCardExtended(false);
+  }, [location.pathname]);
 
   return (
     <>
@@ -109,6 +115,7 @@ const NavBar = () => {
               )}
             </div>
           </div>
+
           <ul
             className={
               isToogleActive
@@ -117,22 +124,21 @@ const NavBar = () => {
             }
           >
             <li>
-              <NavLink to="/" className="nav-link">
+              <NavLink to="/products/clicked/new" className="nav-link">
                 What's New
               </NavLink>
             </li>
             {/* Recipe navigation li */}
             <li className="categories-li">
               <section className="categories-navlink_section">
-                <NavLink
-                  to=""
+                <p
                   className="nav-link y-central"
                   onClick={() => {
                     setIsCategoriesCardExtended((prev) => !prev);
                   }}
                 >
                   Categories <MdKeyboardArrowDown />
-                </NavLink>
+                </p>
               </section>
               {/* Extra categories navigations */}
               <CategoriesDropdown

@@ -10,6 +10,9 @@ import Dropdown from "../../../components/ui/Dropdown";
 import ImageComponent from "../../../components/ui/ImageComponent";
 import ProductCard from "../../../components/ui/ProductCard";
 import skyImg from "../../../assets/images/sky.jpg";
+import ColorFilter from "../../../components/filters/ColorFilter";
+import PriceFilter from "../../../components/filters/PriceFilter";
+import ReviewsFilter from "../../../components/filters/ReviewsFilter";
 
 const ViewProducts = () => {
   //getting parameters from url
@@ -23,40 +26,6 @@ const ViewProducts = () => {
     decodedSearchedItem = itemName; // Fallback to the original value if decoding fails
   }
 
-  //filter items for dropdown
-  const popularSelections = [
-    "Quick",
-    "Easy",
-    "Breakfast",
-    "Lunch",
-    "Dinner",
-    "Dessert",
-    "Main",
-    "Starter",
-    "Side",
-    "Snack",
-  ];
-  const dietSelections = [
-    "Vegetarian",
-    "Vegan",
-    "Gluten Free",
-    "Dairy Free",
-    "Nut Free",
-    "Keto",
-    "Raw",
-    "Pescatarian",
-  ];
-  const cuisinesSelections = [
-    "African",
-    "American",
-    "Asian",
-    "Caribbean",
-    "European",
-    "Latin American",
-    "Middle Eastern",
-    "Oceanian",
-  ];
-
   //to store user selected filter options
   const [selectedFilter, setSelectedFilter] = useState([]);
 
@@ -65,7 +34,7 @@ const ViewProducts = () => {
   };
 
   const removeSelectedFilter = (item) => {
-    setSelectedFilter(selectedFilter.filter((selected) => selected !== item));
+    setSelectedFilter((prev) => prev.filter((selected) => selected !== item));
   };
 
   const clearSelectedFilter = () => {
@@ -87,7 +56,7 @@ const ViewProducts = () => {
           <p className="sub-text">{searchType}</p>
           <h1>
             {searchType === "all"
-              ? "Discover our amazing recipes"
+              ? "Discover our amazing products"
               : `${decodedSearchedItem.replace("-", " ").toUpperCase()}`}
           </h1>
         </div>
@@ -122,48 +91,32 @@ const ViewProducts = () => {
             </div>
             <div className="dropdowns-container">
               <Dropdown
-                filterTitle="Popular"
-                itemsArr={popularSelections}
+                filterTitle={"Colors"}
                 selectedFilter={selectedFilter}
+                addSelectedFilter={addSelectedFilter}
+                removeSelectedFilter={removeSelectedFilter}
+                dropdownComponent={ColorFilter}
+              />
+              <PriceFilter
+                filterTitle="Price"
                 addSelectedFilter={addSelectedFilter}
                 removeSelectedFilter={removeSelectedFilter}
               />
               <Dropdown
-                filterTitle="Diets"
-                itemsArr={dietSelections}
+                filterTitle={"Reviews"}
                 selectedFilter={selectedFilter}
                 addSelectedFilter={addSelectedFilter}
                 removeSelectedFilter={removeSelectedFilter}
-              />
-              <Dropdown
-                filterTitle="Cuisines"
-                itemsArr={cuisinesSelections}
-                selectedFilter={selectedFilter}
-                addSelectedFilter={addSelectedFilter}
-                removeSelectedFilter={removeSelectedFilter}
+                dropdownComponent={ReviewsFilter}
               />
             </div>
-          </div>
-          <div className="selected-filter-tab">
-            {selectedFilter.map((filter, index) => {
-              return (
-                <div
-                  key={index}
-                  className="filter-contain"
-                  onClick={() => removeSelectedFilter(filter)}
-                >
-                  {filter}
-                  <RxCross1 />
-                </div>
-              );
-            })}
           </div>
         </section>
         <section className="products-showcase">
           <h1>This is temporary product showcase</h1>
           <div className="products-grid">
             {exampleArr.map((product, index) => (
-              <ProductCard data={product} index={index} />
+              <ProductCard data={product} key={product.id} />
             ))}
           </div>
           <div className="control-nav"></div>

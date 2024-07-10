@@ -113,6 +113,8 @@
 .categories-navlink_section .nav-link {
   display: flex;
   justify-content: space-between;
+  color: rgba(0, 0, 0, 0.518);
+  cursor: pointer;
 }
 
 .app__navbar .navbar__end-nav {

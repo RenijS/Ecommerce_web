@@ -2,25 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 
-import "./Dropdown.css";
-
-const Dropdown = ({
-  filterTitle,
-  selectedFilter,
-  addSelectedFilter,
-  removeSelectedFilter,
-  dropdownComponent: DropdownComponent,
-}) => {
+const PriceFilter = ({ filterTitle }) => {
   const [isActive, setIsActive] = useState(false);
   const dropdownRef = useRef(null);
-
-  //handle checkbox change
-  const handleCheckboxChange = (item) => {
-    console.log(selectedFilter);
-    selectedFilter.includes(item)
-      ? removeSelectedFilter(item)
-      : addSelectedFilter(item);
-  };
 
   useEffect(() => {
     // event listener function to handle clicks outside of dropdown
@@ -55,14 +39,24 @@ const Dropdown = ({
         <p>{filterTitle}</p>
         {isActive ? <IoIosArrowUp /> : <IoIosArrowDown />}
       </div>
-
-      <DropdownComponent
-        isActive={isActive}
-        selectedFilter={selectedFilter}
-        handleCheckboxChange={handleCheckboxChange}
-      />
+      <div
+        className={`dropdown-content  ${
+          isActive ? "dropdown-content-active" : ""
+        }`}
+      >
+        <div>
+          <div>
+            <span>min</span>
+            <span>max</span>
+          </div>
+          <div>
+            <input type="range" name="" id="" />
+            <input type="range" name="" id="" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Dropdown;
+export default PriceFilter;

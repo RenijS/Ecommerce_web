@@ -3,6 +3,7 @@
   flex: 1;
   height: max-content;
   position: relative;
+  max-width: 20rem;
   transition: 0.4s linear;
 }
 

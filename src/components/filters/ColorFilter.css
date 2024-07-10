@@ -1,0 +1,10 @@
+.dropdown-content.colors-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.color-box {
+  height: 18px;
+  width: 18px;
+}

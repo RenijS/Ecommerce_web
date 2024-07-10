@@ -6,7 +6,7 @@ import "./ProductCard.css";
 const ProductCard = ({ data, index }) => {
   const { id, title, price, category, description, image, rating } = data;
   return (
-    <div className="product-card" key={id}>
+    <div className="product-card">
       <ImageComponent
         src={image}
         desc={title}

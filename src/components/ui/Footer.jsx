@@ -47,8 +47,10 @@ const Footer = () => {
           <section className="payments-container">
             <h4>Accepted Payments</h4>
             <div className="payments-grid">
-              {paymentsArr.map((payment) => (
-                <span className="payment-name">{payment.name}</span>
+              {paymentsArr.map((payment, index) => (
+                <span className="payment-name" key={index}>
+                  {payment.name}
+                </span>
               ))}
             </div>
           </section>
