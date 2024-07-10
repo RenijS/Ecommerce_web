@@ -10,11 +10,12 @@ function App() {
       <div className="App" style={{ paddingTop: "5rem" }}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/product" element={<ProductView />} />
           <Route
             path="/products/:searchType/:itemName"
             element={<ViewProducts />}
           />
+
+          <Route path="/product" element={<ProductView />} />
           {/* Route that does not exists */}
           <Route
             path="*"

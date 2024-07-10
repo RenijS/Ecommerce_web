@@ -79,7 +79,9 @@ const ViewProducts = () => {
                 onMouseLeave={() => setIsClearHovered(false)}
                 onClick={() => clearSelectedFilter()}
               >
-                <p className="sub-text">Clear Filters</p>
+                <p className="sub-text" style={{ cursor: "pointer" }}>
+                  Clear Filters
+                </p>
                 <div
                   className={
                     isClearHovered

@@ -12,6 +12,15 @@
   cursor: pointer;
 }
 
+.product-card button {
+  transition: 0.2s linear;
+}
+
+.product-card button:hover {
+  background-color: var(--color-text);
+  color: white;
+}
+
 .product-details {
   display: flex;
   flex-direction: column;

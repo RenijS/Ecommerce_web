@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 //Style
@@ -44,7 +44,10 @@ const categoriesArr = [
   },
 ];
 
-const CategoriesDropdown = ({ isCategoriesCardExtended }) => {
+const CategoriesDropdown = ({
+  isCategoriesCardExtended,
+  categoriesDropdownRef,
+}) => {
   return (
     <div
       className={
@@ -52,6 +55,7 @@ const CategoriesDropdown = ({ isCategoriesCardExtended }) => {
           ? "navbar__categories-card categories-navlink_active"
           : "navbar__categories-card"
       }
+      ref={categoriesDropdownRef}
     >
       <section className="left-section">
         <h3>Variety of categories available.</h3>
@@ -81,6 +85,25 @@ const NavBar = () => {
   const [isCategoriesCardExtended, setIsCategoriesCardExtended] =
     useState(false);
 
+  let categoriesDropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClick = (event) => {
+      if (
+        categoriesDropdownRef.current &&
+        !categoriesDropdownRef.current.contains(event.target)
+      ) {
+        setIsCategoriesCardExtended(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+    };
+  }, []);
+
   let location = useLocation();
 
   useEffect(() => {
@@ -92,10 +115,14 @@ const NavBar = () => {
       <header className="app__navbar-cover">
         <div className="app__navbar">
           <div className="navbar__start-nav">
-            <div className="navbar__logo">
+            <NavLink
+              to={"/"}
+              className="navbar__logo"
+              style={{ color: "black" }}
+            >
               <img src="." alt="" />
               <p>ShopMart</p>
-            </div>
+            </NavLink>
             <div className="hamburger_icon">
               {!isToogleActive && (
                 <GiHamburgerMenu
@@ -143,6 +170,7 @@ const NavBar = () => {
               {/* Extra categories navigations */}
               <CategoriesDropdown
                 isCategoriesCardExtended={isCategoriesCardExtended}
+                categoriesDropdownRef={categoriesDropdownRef}
               />
             </li>
             <li>

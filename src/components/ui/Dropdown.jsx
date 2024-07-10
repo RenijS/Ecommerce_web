@@ -25,7 +25,7 @@ const Dropdown = ({
   useEffect(() => {
     // event listener function to handle clicks outside of dropdown
     // dropdownRef.current checks if ref is set or not i.e., null or DOM dropdown
-    // !dropdownRef.current.contains(event.target) checks if document clicked is dropdown or omthing else.
+    // !dropdownRef.current.contains(event.target) checks if document clicked is dropdown or somthing else.
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsActive(false);
