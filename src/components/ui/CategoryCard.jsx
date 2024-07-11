@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 import "./CategoryCard.css";
+import { NavLink } from "react-router-dom";
 
 const CategoryCard = ({ name, src }) => {
   useEffect(() => {
@@ -22,10 +23,10 @@ const CategoryCard = ({ name, src }) => {
   }, []);
 
   return (
-    <div className="category-card hidden">
+    <NavLink to={`/products/category/${name}`} className="category-card hidden">
       <div className="img-container">{<img src={src} alt={name} />}</div>
       <p>{name}</p>
-    </div>
+    </NavLink>
   );
 };
 

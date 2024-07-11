@@ -1,9 +1,6 @@
 import React from "react";
 import LinkView from "./LinkView";
 import "./Footer.css";
-import ImageComponent from "./ImageComponent";
-
-import hashData from "../../data/blurhash-hash.json";
 
 const Footer = () => {
   const paymentsArr = [

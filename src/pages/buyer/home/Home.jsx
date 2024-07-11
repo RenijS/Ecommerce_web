@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import ImageComponent from "../../../components/ui/ImageComponent";
 import hashData from "../../../data/blurhash-hash.json";
 import productArr from "../../../data/example-data.json";
@@ -10,9 +10,9 @@ import { GiPush } from "react-icons/gi";
 
 //images
 import shoppingImg from "../../../assets/images/shopping.jpg";
-import bagsImg from "../../../assets/images/bags.jpg";
-import booksImg from "../../../assets/images/books.jpg";
-import furnitureImg from "../../../assets/images/furniture.jpg";
+import menswearImg from "../../../assets/images/menswear.jpg";
+import womenswearImg from "../../../assets/images/womenswear.jpg";
+import jeweleryImg from "../../../assets/images/Jewelery.jpg";
 import shoesImg from "../../../assets/images/shoes.jpg";
 import techImg from "../../../assets/images/tech.jpg";
 import travelImg from "../../../assets/images/travel.jpg";
@@ -22,21 +22,21 @@ import CategoryCard from "../../../components/ui/CategoryCard";
 const Home = () => {
   const categoriesArr = [
     {
-      name: "Furniture",
-      src: furnitureImg,
+      name: "Men's clothing",
+      src: menswearImg,
     },
-    { name: "Books", src: booksImg },
+    { name: "Women's clothing", src: womenswearImg },
     {
-      name: "Tech",
+      name: "Electronics",
       src: techImg,
+    },
+    {
+      name: "Jewelery",
+      src: jeweleryImg,
     },
     {
       name: "Travel",
       src: travelImg,
-    },
-    {
-      name: "Bags",
-      src: bagsImg,
     },
     {
       name: "Shoes",

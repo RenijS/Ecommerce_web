@@ -7,27 +7,25 @@ import { IoPersonOutline } from "react-icons/io5";
 import ImageComponent from "./ImageComponent";
 import SearchBar from "./SearchBar";
 import "./NavBar.css";
-import bagsImg from "../../assets/images/bags.jpg";
-import booksImg from "../../assets/images/books.jpg";
-import furnitureImg from "../../assets/images/furniture.jpg";
-import shoesImg from "../../assets/images/shoes.jpg";
+import menswearImg from "../../assets/images/menswear.jpg";
+import womenswearImg from "../../assets/images/womenswear.jpg";
+import jeweleryImg from "../../assets/images/Jewelery.jpg";
 import techImg from "../../assets/images/tech.jpg";
-import travelImg from "../../assets/images/travel.jpg";
 
 // Category array
 const categoriesArr = [
   {
     name: "Electronics",
-    src: furnitureImg,
+    src: techImg,
   },
-  { name: "Jewelery", src: booksImg },
+  { name: "Jewelery", src: jeweleryImg },
   {
     name: "Men's clothing",
-    src: techImg,
+    src: menswearImg,
   },
   {
     name: "Women's clothing",
-    src: travelImg,
+    src: womenswearImg,
   },
 ];
 

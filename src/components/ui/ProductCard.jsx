@@ -3,10 +3,10 @@ import ImageComponent from "./ImageComponent";
 
 import "./ProductCard.css";
 
-const ProductCard = ({ data, index }) => {
+const ProductCard = ({ data }) => {
   const { id, title, price, category, description, image, rating } = data;
   return (
-    <div className="product-card">
+    <div className="product-card" key={id}>
       <ImageComponent
         src={image}
         desc={title}
