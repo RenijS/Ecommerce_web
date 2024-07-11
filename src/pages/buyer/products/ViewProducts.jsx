@@ -22,7 +22,8 @@ const ViewProducts = () => {
   const { searchType, itemName } = useParams();
 
   const dispatch = useDispatch();
-  const { products, loading, error } = useSelector((state) => state.products);
+  //there's error as well
+  const { products, loading } = useSelector((state) => state.products);
 
   // decode the encoded search item
   let decodedSearchedItem = "";
@@ -38,8 +39,6 @@ const ViewProducts = () => {
       dispatch(fetchProducts());
     } else {
       dispatch(fetchProductsByCategory(decodedSearchedItem.toLowerCase()));
-      console.log(decodedSearchedItem);
-      console.log(products);
     }
   }, [dispatch, searchType, decodedSearchedItem]);
 
