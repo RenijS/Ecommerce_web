@@ -5,6 +5,8 @@ import App from "./App";
 import { BrowserRouter, useLocation } from "react-router-dom";
 import NavBar from "./components/ui/NavBar";
 import Footer from "./components/ui/Footer";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 const Main = () => {
   const location = useLocation();
@@ -26,8 +28,10 @@ const Main = () => {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Main />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Main />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );

@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import exampleArr from "../../../data/example-data.json";
-
-import { RxCross1 } from "react-icons/rx";
 
 import "./ViewProducts.css";
 import Dropdown from "../../../components/ui/Dropdown";
@@ -13,10 +11,19 @@ import skyImg from "../../../assets/images/sky.jpg";
 import ColorFilter from "../../../components/filters/ColorFilter";
 import PriceFilter from "../../../components/filters/PriceFilter";
 import ReviewsFilter from "../../../components/filters/ReviewsFilter";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchProducts,
+  fetchProductsByCategory,
+} from "../../../redux/slices/productSlice";
 
 const ViewProducts = () => {
   //getting parameters from url
   const { searchType, itemName } = useParams();
+
+  const dispatch = useDispatch();
+  const { products, loading, error } = useSelector((state) => state.products);
+
   // decode the encoded search item
   let decodedSearchedItem = "";
   try {
@@ -25,6 +32,16 @@ const ViewProducts = () => {
     console.error(`Failed to decode searched item using ${itemName}: `, e);
     decodedSearchedItem = itemName; // Fallback to the original value if decoding fails
   }
+
+  useEffect(() => {
+    if (searchType === "all") {
+      dispatch(fetchProducts());
+    } else {
+      dispatch(fetchProductsByCategory(decodedSearchedItem.toLowerCase()));
+      console.log(decodedSearchedItem);
+      console.log(products);
+    }
+  }, [dispatch, searchType, decodedSearchedItem]);
 
   //to store user selected filter options
   const [selectedFilter, setSelectedFilter] = useState([]);
@@ -115,11 +132,22 @@ const ViewProducts = () => {
           </div>
         </section>
         <section className="products-showcase">
-          <h1>This is temporary product showcase</h1>
+          {products.length === 0 && !loading && (
+            <h1>
+              Sorry, couldn't find the product you're looking for. Here are some
+              products you may like.
+            </h1>
+          )}
           <div className="products-grid">
-            {exampleArr.map((product, index) => (
-              <ProductCard data={product} key={product.id} />
-            ))}
+            {products.length !== 0 &&
+              products.map((product) => (
+                <ProductCard data={product} key={product.id} />
+              ))}
+            {products.length === 0 &&
+              !loading &&
+              exampleArr.map((product) => (
+                <ProductCard data={product} key={product.id} />
+              ))}
           </div>
           <div className="control-nav"></div>
         </section>

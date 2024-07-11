@@ -1,46 +1,33 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-
-//Style
-import "./NavBar.css";
-//Icons
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdCancel, MdKeyboardArrowDown } from "react-icons/md";
 import { BsCartPlus } from "react-icons/bs";
 import { IoPersonOutline } from "react-icons/io5";
 import ImageComponent from "./ImageComponent";
-
-//images
+import SearchBar from "./SearchBar";
+import "./NavBar.css";
 import bagsImg from "../../assets/images/bags.jpg";
 import booksImg from "../../assets/images/books.jpg";
 import furnitureImg from "../../assets/images/furniture.jpg";
 import shoesImg from "../../assets/images/shoes.jpg";
 import techImg from "../../assets/images/tech.jpg";
 import travelImg from "../../assets/images/travel.jpg";
-import SearchBar from "./SearchBar";
 
-//Category array
+// Category array
 const categoriesArr = [
   {
-    name: "Furniture",
+    name: "Electronics",
     src: furnitureImg,
   },
-  { name: "Books", src: booksImg },
+  { name: "Jewelery", src: booksImg },
   {
-    name: "Tech",
+    name: "Men's clothing",
     src: techImg,
   },
   {
-    name: "Travel",
+    name: "Women's clothing",
     src: travelImg,
-  },
-  {
-    name: "Bags",
-    src: bagsImg,
-  },
-  {
-    name: "Shoes",
-    src: shoesImg,
   },
 ];
 
@@ -78,18 +65,27 @@ const CategoriesDropdown = ({
 };
 
 const NavBar = () => {
-  //For small screen, hamburger icon is clicked or not.
+  // For small screen, hamburger icon is clicked or not
   const [isToogleActive, setIsToogleActive] = useState(false);
-
-  //For extended category card
+  // For extended category card
   const [isCategoriesCardExtended, setIsCategoriesCardExtended] =
     useState(false);
 
-  let categoriesDropdownRef = useRef(null);
+  const categoriesDropdownRef = useRef(null);
+  const categoriesButtonRef = useRef(null);
 
   useEffect(() => {
+    //handles onClick for category dropdown
     const handleClick = (event) => {
+      //when categories button is clicked
       if (
+        categoriesButtonRef.current &&
+        categoriesButtonRef.current.contains(event.target)
+      ) {
+        setIsCategoriesCardExtended((prev) => !prev);
+      }
+      //When clicked outside of categories button and categories' dropdown card
+      else if (
         categoriesDropdownRef.current &&
         !categoriesDropdownRef.current.contains(event.target)
       ) {
@@ -104,7 +100,7 @@ const NavBar = () => {
     };
   }, []);
 
-  let location = useLocation();
+  const location = useLocation();
 
   useEffect(() => {
     setIsCategoriesCardExtended(false);
@@ -127,17 +123,13 @@ const NavBar = () => {
               {!isToogleActive && (
                 <GiHamburgerMenu
                   className="icon"
-                  onClick={() => {
-                    setIsToogleActive(true);
-                  }}
+                  onClick={() => setIsToogleActive(true)}
                 />
               )}
               {isToogleActive && (
                 <MdCancel
                   className="icon"
-                  onClick={() => {
-                    setIsToogleActive(false);
-                  }}
+                  onClick={() => setIsToogleActive(false)}
                 />
               )}
             </div>
@@ -158,12 +150,7 @@ const NavBar = () => {
             {/* Recipe navigation li */}
             <li className="categories-li">
               <section className="categories-navlink_section">
-                <p
-                  className="nav-link y-central"
-                  onClick={() => {
-                    setIsCategoriesCardExtended((prev) => !prev);
-                  }}
-                >
+                <p className="nav-link y-central" ref={categoriesButtonRef}>
                   Categories <MdKeyboardArrowDown />
                 </p>
               </section>
@@ -174,12 +161,12 @@ const NavBar = () => {
               />
             </li>
             <li>
-              <NavLink to="/about" className="nav-link">
+              <NavLink to="/about-us" className="nav-link">
                 About
               </NavLink>
             </li>
             <li>
-              <NavLink to="/contact" className="nav-link">
+              <NavLink to="/contact-us" className="nav-link">
                 Contact
               </NavLink>
             </li>
