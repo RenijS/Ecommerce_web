@@ -1,0 +1,67 @@
+.app__checkout {
+  margin-top: 2rem;
+  padding: 0 8rem;
+}
+
+.app__checkout .sub-text {
+  color: gray;
+}
+
+.app__checkout .product-info {
+  border: 1px gray solid;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.product-info .img-container {
+  max-height: 8rem;
+  width: 7rem;
+  padding: 0.5rem;
+  background-color: white;
+  border-radius: 16px;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.product-info .item-section {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 2rem;
+}
+
+form input {
+  padding: 0.4rem 1rem;
+  border: 1px solid gray;
+  border-radius: 8px;
+}
+
+.grid-item .coupon-container {
+  background-color: gainsboro;
+  width: max-content;
+  padding: 0.3rem;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+.coupon-container input {
+  border: 0;
+  background-color: transparent;
+  height: 100%;
+}
+
+.coupon-container input:focus {
+  outline: none;
+}
+
+.coupon-container button {
+  background-color: var(--color-text);
+  color: white;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+}

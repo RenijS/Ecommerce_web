@@ -11,6 +11,7 @@ import menswearImg from "../../assets/images/menswear.jpg";
 import womenswearImg from "../../assets/images/womenswear.jpg";
 import jeweleryImg from "../../assets/images/Jewelery.jpg";
 import techImg from "../../assets/images/tech.jpg";
+import { useDispatch, useSelector } from "react-redux";
 
 // Category array
 const categoriesArr = [
@@ -71,6 +72,8 @@ const NavBar = () => {
 
   const categoriesDropdownRef = useRef(null);
   const categoriesButtonRef = useRef(null);
+
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
   useEffect(() => {
     //handles onClick for category dropdown
@@ -182,10 +185,15 @@ const NavBar = () => {
                 <IoPersonOutline />
                 <span>Account</span>
               </div>
-              <div className="cart-btn xy-central" style={{ gap: "0.5rem" }}>
+              <NavLink
+                to={"/cart"}
+                className="cart-btn xy-central"
+                style={{ gap: "0.5rem" }}
+              >
                 <BsCartPlus />
                 <span>Cart</span>
-              </div>
+                <span>{totalQuantity}</span>
+              </NavLink>
             </div>
           </div>
         </div>

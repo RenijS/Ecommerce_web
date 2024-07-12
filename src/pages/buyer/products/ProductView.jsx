@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ImageComponent from "../../../components/ui/ImageComponent";
 
 import chairsImg from "../../../assets/images/chairs.jpg";
@@ -12,41 +12,70 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { GiReturnArrow } from "react-icons/gi";
 import { SiFsecure } from "react-icons/si";
 import Carousel from "../../../components/ui/Carousel";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProductById } from "../../../redux/slices/productSlice";
+import { useParams } from "react-router-dom";
+import { addItem } from "../../../redux/slices/cartSlice";
 
 const ProductView = () => {
+  const { id } = useParams();
+
+  const dispatch = useDispatch();
+
+  const { product, loading } = useSelector((state) => state.products);
+
+  useEffect(() => {
+    dispatch(fetchProductById(id));
+  }, [dispatch, id]);
+
+  const handleAddToCart = (item) => {
+    dispatch(addItem(item));
+  };
+
+  if (loading) {
+    return <div>Loading...</div>; // You can replace this with a loader component if you have one
+  }
+
+  if (!product) {
+    return <div>Product not found</div>; // Handle the case where the product is not found
+  }
+
   return (
     <div className="app__product-view">
       <div className="product-view">
-        <p className="sub-text">Item's category</p>
+        <p className="sub-text">{product.category.toUpperCase()}</p>
         <div className="product">
           <ImageComponent
-            src={chairsImg}
-            desc={""}
+            src={product.image}
+            desc={product.title}
             hash={"L6BfLT140#~816,@rsog9ew4$*S5"}
           />
           <div className="right-col">
             <section className="upper">
-              <h1>Product Name</h1>
-              <p className="sub-text">Product description</p>
-              <div>Product rating</div>
+              <h1>{product.title}</h1>
+              <p className="sub-text">{product.description}</p>
+              <div>
+                {product.rating.rate}⭐ by {product.rating.count} customers
+              </div>
             </section>
             <div className="horizontal-line" />
             <section className="payment-info">
-              <p>Payment amounts</p>
+              <h3>${product.price}</h3>
               <p className="sub-text">
                 Suggested payments with 6 months special financing
               </p>
             </section>
             <div className="horizontal-line" />
             <section className="buttons">
-              <div className="amount-btn">
-                <button>-</button>
-                <span>10</span>
-                <button>+</button>
-              </div>
               <div className="other-btns">
                 <button>Buy Now</button>
-                <button>Add to Cart</button>
+                <button
+                  onClick={() => {
+                    handleAddToCart(product);
+                  }}
+                >
+                  Add to Cart
+                </button>
               </div>
             </section>
             <div className="horizontal-line" />

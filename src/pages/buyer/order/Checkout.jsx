@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-
 import "./Checkout.css";
 import ImageComponent from "../../../components/ui/ImageComponent";
+import { useDispatch, useSelector } from "react-redux";
 
 const OrderAccepted = () => {
   return (
@@ -15,26 +15,67 @@ const OrderAccepted = () => {
 
 const Checkout = () => {
   const [paymentOption, setPaymentOption] = useState("");
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+    city: "",
+    state: "",
+    postcode: "",
+    mobile: "",
+    email: "",
+    cardEmail: "",
+    cardName: "",
+    expiry: "",
+    cvc: "",
+  });
+  const [orderAccepted, setOrderAccepted] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const { items, totalQuantity, totalAmount } = useSelector(
+    (state) => state.cart
+  );
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Dispatch order action here
+    setOrderAccepted(true);
+  };
+
+  if (orderAccepted) {
+    return <OrderAccepted />;
+  }
 
   return (
     <div className="app__checkout">
       <p className="sub-text">Checkout</p>
       <div className="checkout-grid">
         <div className="product-info grid-item">
-          <h1>Review Item And Shipping</h1>
-          <div className="flex-x">
-            <div className="flex-x">
-              <ImageComponent src={""} desc={""} hash={""} />
-              <div className="flex-y">
-                <h2>Product Name</h2>
-                <p className="sub-text">Color</p>
+          <h2>Review Item And Shipping</h2>
+          {items.map((item) => (
+            <section className="item-section" key={item.id}>
+              <ImageComponent
+                src={item.image}
+                desc={""}
+                hash={"L6BfLT140#~816,@rsog9ew4$*S5"}
+              />
+              <div className="flex-y" style={{ width: "100%" }}>
+                <div
+                  className="flex-x"
+                  style={{ width: "100%", justifyContent: "space-between" }}
+                >
+                  <h2>{item.title}</h2> <p>${item.price}</p>
+                </div>
+                <p>Quantity: {item.quantity}</p>
               </div>
-            </div>
-            <div className="flex-y">
-              <p>Product Price</p>
-              <p>Quantity</p>
-            </div>
-          </div>
+            </section>
+          ))}
         </div>
 
         <div className="grid-item">
@@ -43,7 +84,7 @@ const Checkout = () => {
             <p>Returning Customer?</p>
           </div>
           <form className="delivery-info">
-            <h1>Delivery Information</h1>
+            <h2>Delivery Information</h2>
             <div className="flex-x">
               <label className="flex-y">
                 First Name
@@ -52,6 +93,8 @@ const Checkout = () => {
                   placeholder="Type here..."
                   name="firstName"
                   id="firstName"
+                  value={formData.firstName}
+                  onChange={handleInputChange}
                   required
                 />
               </label>
@@ -62,6 +105,8 @@ const Checkout = () => {
                   placeholder="Type here..."
                   name="lastName"
                   id="lastName"
+                  value={formData.lastName}
+                  onChange={handleInputChange}
                   required
                 />
               </label>
@@ -74,6 +119,8 @@ const Checkout = () => {
                   placeholder="Type here..."
                   name="address"
                   id="address"
+                  value={formData.address}
+                  onChange={handleInputChange}
                   required
                 />
               </label>
@@ -86,6 +133,8 @@ const Checkout = () => {
                   placeholder="Type here..."
                   name="city"
                   id="city"
+                  value={formData.city}
+                  onChange={handleInputChange}
                   required
                 />
               </label>
@@ -96,6 +145,8 @@ const Checkout = () => {
                   placeholder="Type here..."
                   name="state"
                   id="state"
+                  value={formData.state}
+                  onChange={handleInputChange}
                   required
                 />
               </label>
@@ -106,6 +157,8 @@ const Checkout = () => {
                   placeholder="Type here..."
                   name="postcode"
                   id="postcode"
+                  value={formData.postcode}
+                  onChange={handleInputChange}
                   required
                 />
               </label>
@@ -118,6 +171,8 @@ const Checkout = () => {
                   placeholder="Type here..."
                   name="mobile"
                   id="mobile"
+                  value={formData.mobile}
+                  onChange={handleInputChange}
                   required
                 />
               </label>
@@ -128,6 +183,8 @@ const Checkout = () => {
                   placeholder="Type here..."
                   name="email"
                   id="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
                   required
                 />
               </label>
@@ -136,123 +193,135 @@ const Checkout = () => {
         </div>
 
         <div className="grid-item">
-          <h1>Order Summery</h1>
+          <h2>Order Summary</h2>
           <div className="horizontal-line" />
           <div className="coupon-container">
             <input type="text" placeholder="Enter Coupon Code" />
             <button>Apply coupon</button>
           </div>
+          <div className="horizontal-line" />
           <div className="payment-option-selector">
-            <div className="flex-y">
+            <div className="flex-x">
               <input
                 type="radio"
                 id="cash"
-                name="cash"
-                value={"cash"}
+                name="paymentOption"
+                value="cash"
                 onChange={() => setPaymentOption("cash")}
                 checked={paymentOption === "cash"}
               />
-              <label htmlFor="cash" title="text">
+              <label htmlFor="cash" title="Cash">
                 Cash
               </label>
             </div>
-            <div className="flex-y">
+            <div className="flex-x">
               <input
                 type="radio"
                 id="paypal"
-                name="paypal"
-                value={"paypal"}
+                name="paymentOption"
+                value="paypal"
                 onChange={() => setPaymentOption("paypal")}
                 checked={paymentOption === "paypal"}
               />
-              <label htmlFor="paypal" title="text">
+              <label htmlFor="paypal" title="Paypal">
                 Paypal
               </label>
             </div>
-            <div className="flex-y">
+            <div className="flex-x">
               <input
                 type="radio"
                 id="card"
-                name="card"
-                value={"card"}
+                name="paymentOption"
+                value="card"
                 onChange={() => setPaymentOption("card")}
                 checked={paymentOption === "card"}
               />
-              <label htmlFor="card" title="text">
+              <label htmlFor="card" title="Credit or Debit card">
                 Credit or Debit card
               </label>
             </div>
           </div>
-          {paymentOption !== "cash" && (
-            <form>
-              <div className="flex-y">
-                <label>
-                  Email
-                  <input
-                    type="text"
-                    name="email"
-                    id="email"
-                    placeholder="Type here..."
-                    required
-                  />
-                </label>
-              </div>
-              <div className="flex-y">
-                <label>
-                  Card Holder Name
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="Type here..."
-                    required
-                  />
-                </label>
+
+          <form onSubmit={handleSubmit}>
+            {paymentOption !== "cash" && (
+              <>
+                <div className="flex-y">
+                  <label>
+                    Email
+                    <input
+                      type="text"
+                      name="cardEmail"
+                      id="cardEmail"
+                      placeholder="Type here..."
+                      value={formData.cardEmail}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </label>
+                </div>
+                <div className="flex-y">
+                  <label>
+                    Card Holder Name
+                    <input
+                      type="text"
+                      name="cardName"
+                      id="cardName"
+                      placeholder="Type here..."
+                      value={formData.cardName}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </label>
+                </div>
+                <div className="flex-x">
+                  <div className="flex-y">
+                    <label>
+                      Expiry
+                      <input
+                        type="text"
+                        placeholder="Type here..."
+                        name="expiry"
+                        id="expiry"
+                        value={formData.expiry}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </label>
+                  </div>
+                  <div className="flex-y">
+                    <label>
+                      CVC
+                      <input
+                        type="text"
+                        placeholder="Type here..."
+                        name="cvc"
+                        id="cvc"
+                        value={formData.cvc}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </label>
+                  </div>
+                </div>
+              </>
+            )}
+            <div className="amount-desc">
+              <div className="flex-x">
+                <p>Sub Total</p>
+                <p>${totalAmount}</p>
               </div>
               <div className="flex-x">
-                <div className="flex-y">
-                  <label>
-                    Expiry
-                    <input
-                      type="text"
-                      placeholder="Type here..."
-                      name="expiry"
-                      id="expiry"
-                      required
-                    />
-                  </label>
-                </div>
-                <div className="flex-y">
-                  <label>
-                    CVC
-                    <input
-                      type="text"
-                      placeholder="Type here..."
-                      name="cvc"
-                      id="cvc"
-                      required
-                    />
-                  </label>
-                </div>
+                <p>Shipping Cost</p>
+                <p>-$0.00</p>
               </div>
-              <div className="amount-desc">
-                <div className="flex-x">
-                  <p>Sub Total</p>
-                  <p>$amount</p>
-                </div>
-                <div className="flex-x">
-                  <p>Shipping Cost</p>
-                  <p>-$0.00</p>
-                </div>
-                <div className="horizontal-line" />
-                <div className="flex-x">
-                  <p>Total</p>
-                  <p>=Total</p>
-                </div>
+              <div className="horizontal-line" />
+              <div className="flex-x">
+                <p>Total</p>
+                <p>${totalAmount}</p>
               </div>
-              <button>Pay $amount</button>
-            </form>
-          )}
+            </div>
+            <button type="submit">Pay ${totalAmount}</button>
+          </form>
         </div>
       </div>
     </div>

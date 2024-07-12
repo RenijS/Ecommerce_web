@@ -2,11 +2,20 @@ import React from "react";
 import ImageComponent from "./ImageComponent";
 
 import "./ProductCard.css";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../redux/slices/cartSlice";
+import { NavLink } from "react-router-dom";
 
 const ProductCard = ({ data }) => {
   const { id, title, price, category, image, rating } = data;
+
+  const dispatch = useDispatch();
+  const handleAddToCart = (item) => {
+    dispatch(addItem(item));
+  };
+
   return (
-    <div className="product-card" key={id}>
+    <NavLink to={`/product/${id}`} className="product-card" key={id}>
       <ImageComponent
         src={image}
         desc={title}
@@ -22,8 +31,8 @@ const ProductCard = ({ data }) => {
           Rating: {rating.rate} by {rating.count}
         </div>
       </div>
-      <button>Add to Cart</button>
-    </div>
+      <button onClick={() => handleAddToCart(data)}>Add to Cart</button>
+    </NavLink>
   );
 };
 

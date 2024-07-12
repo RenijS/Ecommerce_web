@@ -23,10 +23,15 @@
   flex: 1;
   border-radius: 14px;
   overflow: hidden;
+  max-height: 48rem;
+  background-color: white;
+  padding: 1.5rem;
+  height: max-content;
 }
 
 .product img {
-  object-fit: cover;
+  object-fit: contain;
+  width: 100%;
 }
 
 .product .right-col {
@@ -126,4 +131,37 @@
 
 .extra-benefits svg {
   color: var(--color-accent);
+}
+
+@media screen and (max-width: 1100px) {
+  .app__product-view {
+    margin-top: 3rem;
+    padding: 2rem;
+  }
+  .product .img-container {
+    max-height: 40rem;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .right-col .extra-benefits {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media screen and (max-width: 550px) {
+  .app__product-view {
+    padding: 1rem;
+  }
+  .app__product-view .product {
+    flex-direction: column;
+  }
+  .product .img-container {
+    max-height: 20rem;
+    width: 18rem;
+    margin: 0 auto;
+  }
+
+  .product img {
+    object-fit: contain;
+  }
 }
