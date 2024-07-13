@@ -72,6 +72,11 @@ const Home = () => {
       }
     });
     observer3.observe(logoRef.current);
+
+    return () => {
+      observer2.disconnect();
+      observer3.disconnect();
+    };
   }, []);
 
   return (

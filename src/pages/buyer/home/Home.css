@@ -39,7 +39,7 @@
   align-items: center;
   height: max-content;
   gap: 0.5rem;
-  transform: translateX(-120%);
+  transform: translateX(-100%);
   opacity: 0;
   transition: all 2.5s ease-out;
   transition-delay: 1s;
@@ -226,7 +226,7 @@
   }
 }
 
-@media screen and (max-width: 470px) {
+@media screen and (max-width: 501px) {
   /* Animation */
   .texts-container .opacity-transition {
     transform: scale(1);

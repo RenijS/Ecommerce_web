@@ -102,6 +102,15 @@
   object-fit: cover;
 }
 
+.btns .cart-btn {
+  color: black;
+}
+
+.btns .cart-btn:hover,
+.navbar__start-nav .navbar__logo:hover {
+  transform: scale(1.1);
+}
+
 /* links for card */
 
 .categories-li {

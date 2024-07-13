@@ -105,6 +105,7 @@ const NavBar = () => {
 
   useEffect(() => {
     setIsCategoriesCardExtended(false);
+    setIsToogleActive(false);
   }, [location.pathname]);
 
   return (

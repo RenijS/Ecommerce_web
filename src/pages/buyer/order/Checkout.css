@@ -3,6 +3,13 @@
   padding: 0 8rem;
 }
 
+.app__checkout .checkout-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 3rem;
+}
+
 .app__checkout .sub-text {
   color: gray;
 }
@@ -21,7 +28,7 @@
   border-radius: 16px;
 }
 
-.img-container img {
+.product-info img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -34,10 +41,27 @@
   gap: 2rem;
 }
 
+.product-info h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  clear: both;
+  text-overflow: ellipsis;
+}
+
+form input {
+  width: 100%;
+}
+
 form input {
   padding: 0.4rem 1rem;
   border: 1px solid gray;
   border-radius: 8px;
+}
+
+.checkout-grid .order-summary-contain {
+  grid-column: 2;
+  grid-row: 1/3;
 }
 
 .grid-item .coupon-container {
@@ -47,6 +71,13 @@ form input {
   border-radius: 20px;
   overflow: hidden;
   margin: 1rem 0;
+}
+
+.grid-item .delivery-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .coupon-container input {
@@ -64,4 +95,47 @@ form input {
   color: white;
   padding: 0.3rem 1rem;
   border-radius: 20px;
+}
+
+@media screen and (max-width: 1350px) {
+  .app__checkout {
+    padding: 0 2rem;
+  }
+
+  .app__checkout .checkout-grid {
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .app__checkout {
+    margin-top: 4rem;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .app__checkout .product-info {
+    grid-column: 1 / 3;
+  }
+
+  .checkout-grid .order-summary-contain {
+    grid-column: 2;
+    grid-row: 2 / 3;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .app__checkout .checkout-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, auto);
+  }
+
+  .app__checkout .product-info {
+    grid-column: 1;
+  }
+
+  .checkout-grid .order-summary-contain {
+    grid-column: 1;
+    grid-row: 3;
+  }
 }

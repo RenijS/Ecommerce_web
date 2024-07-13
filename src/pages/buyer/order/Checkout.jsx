@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import "./Checkout.css";
 import ImageComponent from "../../../components/ui/ImageComponent";
 import { useDispatch, useSelector } from "react-redux";
+import { clearItems } from "../../../redux/slices/cartSlice";
 
 const OrderAccepted = () => {
   return (
-    <div className="accepted-msg">
-      <div>Tick image animation</div>
+    <div className="accepted-msg" style={{ margin: "4rem auto" }}>
       <h1>Thank you for the order</h1>
       <p>Your order has been accepted</p>
     </div>
@@ -14,7 +14,7 @@ const OrderAccepted = () => {
 };
 
 const Checkout = () => {
-  const [paymentOption, setPaymentOption] = useState("");
+  const [paymentOption, setPaymentOption] = useState("card");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -46,6 +46,7 @@ const Checkout = () => {
     e.preventDefault();
     // Dispatch order action here
     setOrderAccepted(true);
+    dispatch(clearItems());
   };
 
   if (orderAccepted) {
@@ -68,9 +69,13 @@ const Checkout = () => {
               <div className="flex-y" style={{ width: "100%" }}>
                 <div
                   className="flex-x"
-                  style={{ width: "100%", justifyContent: "space-between" }}
+                  style={{
+                    width: "100%",
+                    justifyContent: "space-between",
+                    gap: "1.5rem",
+                  }}
                 >
-                  <h2>{item.title}</h2> <p>${item.price}</p>
+                  <h3>{item.title}</h3> <p>${item.price}</p>
                 </div>
                 <p>Quantity: {item.quantity}</p>
               </div>
@@ -85,7 +90,7 @@ const Checkout = () => {
           </div>
           <form className="delivery-info">
             <h2>Delivery Information</h2>
-            <div className="flex-x">
+            <div className="flex-x" style={{ gap: "1rem" }}>
               <label className="flex-y">
                 First Name
                 <input
@@ -125,7 +130,7 @@ const Checkout = () => {
                 />
               </label>
             </div>
-            <div className="flex-x">
+            <div className="flex-x" style={{ flexWrap: "wrap", gap: "1rem" }}>
               <label className="flex-y">
                 City/Suburb
                 <input
@@ -163,7 +168,7 @@ const Checkout = () => {
                 />
               </label>
             </div>
-            <div className="flex-x">
+            <div className="flex-x" style={{ gap: "1rem" }}>
               <label className="flex-y">
                 Mobile
                 <input
@@ -192,7 +197,7 @@ const Checkout = () => {
           </form>
         </div>
 
-        <div className="grid-item">
+        <div className="grid-item order-summary-contain">
           <h2>Order Summary</h2>
           <div className="horizontal-line" />
           <div className="coupon-container">
@@ -245,79 +250,68 @@ const Checkout = () => {
           <form onSubmit={handleSubmit}>
             {paymentOption !== "cash" && (
               <>
-                <div className="flex-y">
-                  <label>
-                    Email
+                <label className="flex-y">
+                  Email
+                  <input
+                    type="text"
+                    name="cardEmail"
+                    id="cardEmail"
+                    placeholder="Type here..."
+                    value={formData.cardEmail}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </label>
+                <label className="flex-y">
+                  Card Holder Name
+                  <input
+                    type="text"
+                    name="cardName"
+                    id="cardName"
+                    placeholder="Type here..."
+                    value={formData.cardName}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </label>
+                <div className="flex-x" style={{ gap: "1rem" }}>
+                  <label className="flex-y">
+                    Expiry
                     <input
                       type="text"
-                      name="cardEmail"
-                      id="cardEmail"
                       placeholder="Type here..."
-                      value={formData.cardEmail}
+                      name="expiry"
+                      id="expiry"
+                      value={formData.expiry}
                       onChange={handleInputChange}
                       required
                     />
                   </label>
-                </div>
-                <div className="flex-y">
-                  <label>
-                    Card Holder Name
+                  <label className="flex-y">
+                    CVC
                     <input
                       type="text"
-                      name="cardName"
-                      id="cardName"
                       placeholder="Type here..."
-                      value={formData.cardName}
+                      name="cvc"
+                      id="cvc"
+                      value={formData.cvc}
                       onChange={handleInputChange}
                       required
                     />
                   </label>
-                </div>
-                <div className="flex-x">
-                  <div className="flex-y">
-                    <label>
-                      Expiry
-                      <input
-                        type="text"
-                        placeholder="Type here..."
-                        name="expiry"
-                        id="expiry"
-                        value={formData.expiry}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </label>
-                  </div>
-                  <div className="flex-y">
-                    <label>
-                      CVC
-                      <input
-                        type="text"
-                        placeholder="Type here..."
-                        name="cvc"
-                        id="cvc"
-                        value={formData.cvc}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </label>
-                  </div>
                 </div>
               </>
             )}
             <div className="amount-desc">
               <div className="flex-x">
-                <p>Sub Total</p>
-                <p>${totalAmount}</p>
+                <p>{`Sub Total: $${totalAmount}`}</p>
               </div>
               <div className="flex-x">
-                <p>Shipping Cost</p>
-                <p>-$0.00</p>
+                <p>{`Shipping Cost: $0.00`}</p>
               </div>
               <div className="horizontal-line" />
               <div className="flex-x">
-                <p>Total</p>
-                <p>${totalAmount}</p>
+                <p>{`Total: $${totalAmount}`}</p>
               </div>
             </div>
             <button type="submit">Pay ${totalAmount}</button>
