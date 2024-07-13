@@ -106,6 +106,16 @@
   color: black;
 }
 
+.cart-btn .totalQuantity-span {
+  background-color: var(--color-accent);
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--color-text);
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  font-weight: bold;
+}
+
 .btns .cart-btn:hover,
 .navbar__start-nav .navbar__logo:hover {
   transform: scale(1.1);

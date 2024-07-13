@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import ImageComponent from "../../../components/ui/ImageComponent";
 
-import chairsImg from "../../../assets/images/chairs.jpg";
-
 import "./ProductView.css";
 
 import productsArr from "../../../data/example-data.json";

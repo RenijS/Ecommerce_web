@@ -11,7 +11,7 @@ import menswearImg from "../../assets/images/menswear.jpg";
 import womenswearImg from "../../assets/images/womenswear.jpg";
 import jeweleryImg from "../../assets/images/Jewelery.jpg";
 import techImg from "../../assets/images/tech.jpg";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 // Category array
 const categoriesArr = [
@@ -193,7 +193,7 @@ const NavBar = () => {
               >
                 <BsCartPlus />
                 <span>Cart</span>
-                <span>{totalQuantity}</span>
+                <span className="totalQuantity-span">{totalQuantity}</span>
               </NavLink>
             </div>
           </div>

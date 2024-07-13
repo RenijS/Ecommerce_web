@@ -90,6 +90,7 @@ const Checkout = () => {
           </div>
           <form className="delivery-info">
             <h2>Delivery Information</h2>
+            <div className="horizontal-line" />
             <div className="flex-x" style={{ gap: "1rem" }}>
               <label className="flex-y">
                 First Name
@@ -247,7 +248,7 @@ const Checkout = () => {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="payment-form">
             {paymentOption !== "cash" && (
               <>
                 <label className="flex-y">
@@ -304,6 +305,9 @@ const Checkout = () => {
             )}
             <div className="amount-desc">
               <div className="flex-x">
+                <p>{`Total Items: ${totalQuantity}`}</p>
+              </div>
+              <div className="flex-x">
                 <p>{`Sub Total: $${totalAmount}`}</p>
               </div>
               <div className="flex-x">
@@ -311,7 +315,7 @@ const Checkout = () => {
               </div>
               <div className="horizontal-line" />
               <div className="flex-x">
-                <p>{`Total: $${totalAmount}`}</p>
+                <p>{`Total Cost: $${totalAmount}`}</p>
               </div>
             </div>
             <button type="submit">Pay ${totalAmount}</button>
