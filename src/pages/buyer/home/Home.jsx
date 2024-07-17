@@ -53,7 +53,6 @@ const Home = () => {
     //observer2 for text
     const observer2 = new IntersectionObserver((entries) => {
       const entry = entries[0];
-      console.log(entry);
 
       if (entry.isIntersecting) {
         welcomeTextRef.current.classList.add("opacity-transition");
@@ -65,7 +64,6 @@ const Home = () => {
     //observer3 for logo
     const observer3 = new IntersectionObserver((entries) => {
       const entry = entries[0];
-      console.log(entry);
 
       if (entry.isIntersecting) {
         logoRef.current.classList.add("move-logo");

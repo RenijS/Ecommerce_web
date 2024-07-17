@@ -49,7 +49,7 @@ const Carousel = ({ arrayData }) => {
       <div className="carousel" ref={carouselRef}>
         <Slider {...settings}>
           {arrayData.map((data, index) => (
-            <ProductCard data={data} index={index} />
+            <ProductCard data={data} index={index} key={index} />
           ))}
         </Slider>
       </div>

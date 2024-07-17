@@ -46,8 +46,8 @@ const Cart = () => {
           )}
         </section>
         <section className="cart-list">
-          {items.map((item) => (
-            <div className="cart-item flex-x">
+          {items.map((item, index) => (
+            <div className="cart-item flex-x" key={index}>
               <ImageComponent
                 src={item.image}
                 desc={item.title}

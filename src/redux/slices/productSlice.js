@@ -33,7 +33,6 @@ export const fetchProductsByCategory = createAsyncThunk(
     const response = await axios.get(
       `https://fakestoreapi.com/products/category/${category}`
     );
-    console.log(response.data);
     return response.data;
   }
 );

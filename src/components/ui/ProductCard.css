@@ -1,8 +1,12 @@
-.product-card {
+.product-card,
+.product-card a {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
   margin: 0.5rem 0;
+}
+
+.product-card a {
   padding: 0.5rem;
   color: black;
 }

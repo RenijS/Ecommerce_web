@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProductById } from "../../../redux/slices/productSlice";
 import { useParams } from "react-router-dom";
 import { addItem } from "../../../redux/slices/cartSlice";
+import LoadingCard from "../../../components/ui/LoadingCard";
 
 const ProductView = () => {
   const { id } = useParams();
@@ -31,7 +32,7 @@ const ProductView = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>; // You can replace this with a loader component if you have one
+    return <LoadingCard />; // You can replace this with a loader component if you have one
   }
 
   if (!product) {

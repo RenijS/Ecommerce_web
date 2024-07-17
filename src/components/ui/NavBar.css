@@ -104,16 +104,21 @@
 
 .btns .cart-btn {
   color: black;
+  position: relative;
 }
 
 .cart-btn .totalQuantity-span {
   background-color: var(--color-accent);
-  padding: 0.1rem 0.5rem;
+  padding: 0 0.3rem;
+  font-size: 0.7rem;
   border: 1px solid var(--color-text);
   border-radius: 50%;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   font-weight: bold;
+  position: absolute;
+  left: 12px;
+  top: -1px;
 }
 
 .btns .cart-btn:hover,
@@ -224,6 +229,15 @@
   }
 }
 
+@media screen and (max-width: 767px) {
+  .cart-btn .totalQuantity-span {
+    padding: 0 0.3rem;
+    font-size: 0.65rem;
+    left: 8px;
+    top: -1px;
+  }
+}
+
 @media screen and (max-width: 570px) {
   .search-bar {
     margin-right: 0;
@@ -246,5 +260,12 @@
     height: max-content;
     opacity: 1;
     margin-bottom: 1rem;
+  }
+
+  .cart-btn .totalQuantity-span {
+    padding: 0 0.28rem;
+    font-size: 0.6rem;
+    left: 8px;
+    top: -6.5px;
   }
 }
