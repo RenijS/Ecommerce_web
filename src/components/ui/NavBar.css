@@ -27,7 +27,7 @@
 .navbar__logo {
   display: flex;
   flex-direction: row;
-  gap: 1.5rem;
+  gap: 0.5rem;
 }
 
 .hamburger_icon,

@@ -12,6 +12,7 @@ import womenswearImg from "../../assets/images/womenswear.jpg";
 import jeweleryImg from "../../assets/images/Jewelery.jpg";
 import techImg from "../../assets/images/tech.jpg";
 import { useSelector } from "react-redux";
+import { FaStoreAlt } from "react-icons/fa";
 
 // Category array
 const categoriesArr = [
@@ -118,7 +119,7 @@ const NavBar = () => {
               className="navbar__logo"
               style={{ color: "black" }}
             >
-              <img src="." alt="" />
+              <FaStoreAlt />
               <p>ShopMart</p>
             </NavLink>
             <div className="hamburger_icon">
